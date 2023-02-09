@@ -1,0 +1,12 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+  push:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: "Build passed, create release"
