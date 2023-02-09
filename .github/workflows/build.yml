@@ -6,6 +6,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+        cache: 'npm'
+
+    - run: npm i
+    - run: npm run print
+      env:
+        FOO: ${{ secrets.TEST_SECRET }}
+        BAR: ${{ secrets.TEST_SECRET }}
+
+
+
+
+  test:
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -22,8 +40,3 @@ jobs:
     - run: npm i
 
     - run: npm run test
-
-    - run: npm run print
-      env:
-        FOO: ${{ secrets.TEST_SECRET }}
-        BAR: ${{ secrets.TEST_SECRET }}
