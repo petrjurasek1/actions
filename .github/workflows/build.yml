@@ -41,3 +41,7 @@ jobs:
     - run: npm i
     - run: npm run test
     - run: sleep 30
+
+  release:
+    uses: ./.github/workflows/release.yml
+    needs: [build, test]
