@@ -4,7 +4,7 @@
   "description": "foo",
   "main": "print.js",
   "scripts": {
-    "secrets": ""
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/petrjurasek1/actions/issues"
   },
-  "homepage": "https://github.com/petrjurasek1/actions#readme"
+  "homepage": "https://github.com/petrjurasek1/actions#readme",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  }
 }
