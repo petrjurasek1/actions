@@ -14,3 +14,6 @@ jobs:
         node-version: 14
 
     - run: node print.js
+      env:
+        FOO: ${{ secrets.TEST_SECRET }}
+        BAR: ${{ secrets.TEST_SECRET }}
