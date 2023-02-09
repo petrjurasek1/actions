@@ -21,7 +21,7 @@ jobs:
 
     - run: npm i
 
-    - run: node tests.js
+    - run: node run test
 
     - run: node print.js
       env:
