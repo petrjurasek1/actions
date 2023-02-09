@@ -1,0 +1,19 @@
+{
+  "name": "action-poc",
+  "version": "0.1.0",
+  "description": "foo",
+  "main": "print.js",
+  "scripts": {
+    "secrets": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petrjurasek1/actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petrjurasek1/actions/issues"
+  },
+  "homepage": "https://github.com/petrjurasek1/actions#readme"
+}
