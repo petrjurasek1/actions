@@ -1,3 +1,7 @@
+# Build app always on push - LTS
+# RUn tests - on LTS if push
+#           - on matrix when want to create release
+
 name: Build
 
 on:
@@ -6,9 +10,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        nodejs: ${{ matrix.nodejs }}
+
     steps:
     - uses: actions/checkout@v3
-
     - uses: actions/setup-node@v3
       with:
         node-version: 14
@@ -20,24 +28,15 @@ jobs:
         FOO: ${{ secrets.TEST_SECRET }}
         BAR: ${{ secrets.TEST_SECRET }}
 
-
-
-
   test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        nodejs: [ 14, 16, 18 ]
 
     steps:
     - uses: actions/checkout@v3
-
     - uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.nodejs }}
+        node-version: 14
         cache: 'npm'
 
     - run: npm i
-
     - run: npm run test
