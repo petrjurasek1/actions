@@ -16,14 +16,14 @@ jobs:
 
     - uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: ${{ matrix.nodejs }}
         cache: 'npm'
 
     - run: npm i
 
-    - run: node run test
+    - run: npm run test
 
-    - run: node print.js
+    - run: npm run print
       env:
         FOO: ${{ secrets.TEST_SECRET }}
         BAR: ${{ secrets.TEST_SECRET }}

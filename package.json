@@ -4,6 +4,7 @@
   "description": "foo",
   "main": "print.js",
   "scripts": {
+    "print": "node print.js",
     "test": "jest"
   },
   "repository": {
