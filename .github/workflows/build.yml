@@ -6,12 +6,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        nodejs: [ 14, 16, 18 ]
+
     steps:
     - uses: actions/checkout@v3
 
     - uses: actions/setup-node@v3
       with:
         node-version: 14
+        cache: 'npm'
+
+    - run: node tests.js
 
     - run: node print.js
       env:
