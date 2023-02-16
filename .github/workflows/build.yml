@@ -45,7 +45,7 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     outputs:
-      current_branch: ${{ steps.output.outputs.current_branch }}
+      current_branch: ${{ steps.outputs.outputs.current_branch }}
     steps:
       - name: Get branch name
         id: branch-name
