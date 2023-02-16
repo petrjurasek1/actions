@@ -74,4 +74,4 @@ jobs:
     needs: [build, test, metadata]
     if: |
       needs.metadata.outputs.current_branch == 'main' ||
-      (contains(needs.metadata.outputs.pkg_version, '0.1.0.alpha') && contains(github.event.head_commit.message, 'release alpha'))
+      (contains(needs.metadata.outputs.pkg_version, '1.0.0-alpha') && contains(github.event.head_commit.message, 'release alpha'))
