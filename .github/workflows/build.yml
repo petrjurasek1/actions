@@ -61,6 +61,7 @@ jobs:
     needs: [metadata]
     steps:
       - run: echo "${{ needs.metatada.outputs.current_branch }}"
+      - run: echo "${{ needs.metatada.outputs.output3 }}"
 
 
   release:
