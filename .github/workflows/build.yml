@@ -46,10 +46,14 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       current_branch: ${{ steps.branch-name.outputs.current_branch }}
+      package_version: ${{ steps.branch-name.outputs.pkg_version }}
     steps:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
+      - name: Get package version
+        id: package-version
+        run: echo "pkg_version=$(jq -r '.version' package.json)" >> $GITHUB_ENV
 
   release:
     uses: ./.github/workflows/release.yml
@@ -58,4 +62,6 @@ jobs:
   conditional:
     uses: ./.github/workflows/manual.yml
     needs: [build, test, metadata]
-    if: needs.metadata.outputs.current_branch == 'test-conditional'
+    if: |
+      (needs.metadata.outputs.current_branch == 'main') ||
+      (contains(${{ needs.metadata.outputs.pkg_version }}, 'alpha') && contains(github.event.head_commit.message, 'release alpha'))
