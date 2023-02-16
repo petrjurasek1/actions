@@ -61,4 +61,4 @@ jobs:
   conditional:
     uses: ./.github/workflows/manual.yml
     needs: [metadata]
-    if: (${{needs.metadata.outputs.current_branch}} == 'test-conditional')
+    if: needs.metadata.outputs.current_branch == 'test-conditional'
