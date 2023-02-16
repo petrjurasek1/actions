@@ -94,3 +94,4 @@ jobs:
           OUTPUT3: ${{needs.metadata.outputs.output3}}
         run: echo "$OUTPUT1 $OUTPUT2 $OUTPUT3"
       - run: echo ${{needs.metadata.outputs.output3}}
+      - run: echo ${{needs.metadata.outputs.current_branch}}
