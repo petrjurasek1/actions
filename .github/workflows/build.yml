@@ -70,7 +70,7 @@ jobs:
   conditional:
     uses: ./.github/workflows/manual.yml
     needs: [build, test, metadata]
-    if: needs.metatada.outputs.current_branch == 'test-conditional'
+    if: needs.metatada.outputs.output3 == 'test-conditional'
 
   job1:
     runs-on: ubuntu-latest
