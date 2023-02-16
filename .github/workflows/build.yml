@@ -56,7 +56,7 @@ jobs:
         id: package-version
         run: 
           version=$(jq -r '.version' package.json)
-          var $version
+          echo $version
           echo "pkg_version=$version" >> "$GITHUB_ENV"
 
   debug:
