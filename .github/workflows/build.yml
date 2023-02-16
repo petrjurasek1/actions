@@ -63,8 +63,7 @@ jobs:
     needs: [metadata]
     steps:
      - run: |
-        echo ${{needs.metadata.outputs.current_branch}}
-        echo ${{needs.metadata.outputs.pkg_version}}
+        echo ${ {needs.metadata.outputs.current_branch }} ${{ needs.metadata.outputs.pkg_version }}
 
   release:
     uses: ./.github/workflows/release.yml
