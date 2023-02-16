@@ -1,8 +1,8 @@
 on:
   workflow_run:
-    workflows: [Build]
-#    types: [completed]
-    types: []
+#    workflows: [Build]
+    workflows: [Bar]
+    types: [completed]
 
 jobs:
   on-success:
