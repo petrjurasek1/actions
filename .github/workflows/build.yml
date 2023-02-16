@@ -62,7 +62,7 @@ jobs:
     steps:
       - run: echo ${{needs.metadata.outputs.output3}}
       - run: echo ${{needs.metadata.outputs.current_branch}}
-    if: (needs.metatada.outputs.output3 == 'test-conditional')
+    if: (${{needs.metadata.outputs.current_branch}} == 'test-conditional')
 
   release:
     uses: ./.github/workflows/release.yml
