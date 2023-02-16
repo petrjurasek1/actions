@@ -53,6 +53,13 @@ jobs:
       - id: outputs
         run: echo "current_branch=${{ steps.branch-name.outputs.current_branch }}" >> "$GITHUB_OUTPUT"
 
+  metadata:
+    runs-on: ubuntu-latest
+    needs: [metadata]
+    steps:
+      - run: echo "${{ needs.metatada.outputs.current_branch }}"
+
+
   release:
     uses: ./.github/workflows/release.yml
     needs: [build, test]
