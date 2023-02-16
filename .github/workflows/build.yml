@@ -45,16 +45,13 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+      current_branch: ${{ steps.output.outputs.current_branch }}
     steps:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
-      - id: step1
-        run: echo "test=hello" >> "$GITHUB_OUTPUT"
-      - id: step2
-        run: echo "test=world" >> "$GITHUB_OUTPUT"
+      - id: outputs
+        run: echo "current_branch=${{ steps.branch-name.outputs.current_branch }}" >> "$GITHUB_OUTPUT"
 
   release:
     uses: ./.github/workflows/release.yml
