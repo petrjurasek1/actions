@@ -56,7 +56,8 @@ jobs:
         id: package-version
         run: 
           version=$(jq -r '.version' package.json)
-          echo "pkg_version=$version" >> $GITHUB_ENV        
+          echo "pkg_version=$version" >> "$GITHUB_ENV"
+          echo "$GITHUB_ENV"
 
   debug:
     runs-on: ubuntu-latest
