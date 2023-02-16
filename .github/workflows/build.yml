@@ -60,5 +60,5 @@ jobs:
   conditional:
     uses: ./.github/workflows/manual.yml
     needs: [build, test, metadata]
-    if: needs.metatada.outputs.current_branch == 'master'
+    if: needs.metatada.outputs.current_branch == 'test-conditional'
 
