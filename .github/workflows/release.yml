@@ -8,3 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Build passed, create release"
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - run: cat package.json
