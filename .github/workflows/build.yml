@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       current_branch: ${{ steps.branch-name.outputs.current_branch }}
-      pkg_version: ${{ steps.package-version.outputs.pkg_version }}
+      pkg_version: ${{ env.pkg_version }}
     steps:
       - name: Get branch name
         id: branch-name
