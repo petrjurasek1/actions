@@ -45,12 +45,18 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     outputs:
-      current_branch: ${{ steps.branch-name.outputs.current_branch }}
-
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
     steps:
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
+
+    steps:
+      - id: step1
+        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+      - id: step2
+        run: echo "test=world" >> "$GITHUB_OUTPUT"
 
   release:
     uses: ./.github/workflows/release.yml
@@ -58,6 +64,6 @@ jobs:
 
   conditional:
     uses: ./.github/workflows/manual.yml
-    needs: [build, test, metadata]
-    if: needs.metatada.outputs.current_branch == 'master'
+    needs: [build, test]
+#    if: needs.metatada.outputs.current_branch == 'master'
 
