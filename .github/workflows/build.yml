@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       current_branch: ${{ steps.branch-name.outputs.current_branch }}
-      package_version: ${{ steps.branch-name.outputs.pkg_version }}
+      pkg_version: ${{ steps.branch-name.outputs.pkg_version }}
     steps:
       - name: Get branch name
         id: branch-name
@@ -65,4 +65,4 @@ jobs:
     needs: [build, test, metadata]
     if: |
       (needs.metadata.outputs.current_branch == 'main') ||
-      (contains(${{ needs.metadata.outputs.pkg_version }}, 'alpha') && contains(github.event.head_commit.message, 'release alpha'))
+      (contains(${{ needs.metadata.outputs.package_version }}, 'alpha') && contains(github.event.head_commit.message, 'release alpha'))
