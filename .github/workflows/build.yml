@@ -45,8 +45,8 @@ jobs:
   metadata:
     runs-on: ubuntu-latest
     outputs:
-      current_branch: ${{steps.branch-name.outputs.current_branch}}
-      pkg_version: ${{steps.branch-name.outputs.pkg_version}}
+      current_branch: ${{ steps.branch-name.outputs.current_branch }}
+      pkg_version: ${{ steps.package-version.outputs.pkg_version }}
     steps:
       - name: Get branch name
         id: branch-name
@@ -56,7 +56,7 @@ jobs:
         id: package-version
         run: 
           version=$(jq -r '.version' package.json)
-          echo "PKG_VERSION=$version" >> $GITHUB_ENV        
+          echo "pkg_version=$version" >> $GITHUB_ENV        
 
   debug:
     runs-on: ubuntu-latest
