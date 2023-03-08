@@ -47,6 +47,7 @@ jobs:
     outputs:
       current_branch: ${{ steps.branch-name.outputs.current_branch }}
       pkg_version: ${{ steps.branch-name.outputs.pkg_version }}
+      release_exists: ${{ steps.release-exists.outputs.release_exists }}
     steps:
       - name: Get branch name
         id: branch-name
