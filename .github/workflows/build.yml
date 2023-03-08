@@ -89,4 +89,4 @@ jobs:
     needs: [build, test, metadata]
     if: |
       (needs.metadata.outputs.current_branch == 'main') ||
-      (needs.metadata.outputs.release_exists == 'false' && contains(needs.metadata.outputs.changed_files, "CHANGELOG.md"))
+      (needs.metadata.outputs.release_exists == 'false' && contains(needs.metadata.outputs.changed_files, 'CHANGELOG.md'))
