@@ -59,7 +59,7 @@ jobs:
       - name: Check if release for package version already exists
         id: release-exists
         run: |
-          curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "release_exists=true" >> $GITHUB_OUTPUT || echo "release_exists=false" >> $GITHUB_OUTPUT
+          curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "release_exists=true" >> $GITHUB_OUTPUT || echo "release_exists=false" >> $GITHUB_
           echo "$GITHUB_ENV"
           cat "$GITHUB_ENV"
       
@@ -91,4 +91,4 @@ jobs:
     needs: [build, test, metadata]
     if: |
       (needs.metadata.outputs.current_branch == 'main') ||
-      (contains(${{ needs.metadata.outputs.package_version }}, 'alpha') && contains(github.event.head_commit.message, 'release alpha'))
+      (needs.metadata.outputs.release_exists == 'false')
