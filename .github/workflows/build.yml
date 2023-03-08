@@ -55,11 +55,13 @@ jobs:
       - name: Get package version
         id: package-version
         run: echo "pkg_version=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+        run: curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "pkg_version_released=true" >> $GITHUB_ENV || echo "pkg_version_released=false" >> $GITHUB_ENV
       
       - name: Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v35
         with:
+          files_separator: " "
           files: |
             package.json
             CHANGELOG.md
