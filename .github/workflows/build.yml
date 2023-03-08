@@ -48,6 +48,7 @@ jobs:
       current_branch: ${{ steps.branch-name.outputs.current_branch }}
       pkg_version: ${{ steps.branch-name.outputs.pkg_version }}
       release_exists: ${{ steps.release-exists.outputs.release_exists }}
+      changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
     steps:
       - name: Get branch name
         id: branch-name
@@ -88,4 +89,4 @@ jobs:
     needs: [build, test, metadata]
     if: |
       (needs.metadata.outputs.current_branch == 'main') ||
-      (needs.metadata.outputs.release_exists == 'false')
+      (needs.metadata.outputs.release_exists == 'false' && contains(needs.metadata.outputs.changed_files, "CHANGELOG.md"))
