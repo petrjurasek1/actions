@@ -59,9 +59,7 @@ jobs:
       - name: Check if release for package version already exists
         id: release-exists
         run: |
-          curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "release_exists=true" >> $GITHUB_OUTPUT || echo "release_exists=false" >> $GITHUB_
-          echo "$GITHUB_ENV"
-          cat "$GITHUB_ENV"
+          curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "release_exists=true" >> $GITHUB_OUTPUT || echo "release_exists=false" >> $GITHUB_OUTPUT
       
       - name: Changed Files
         id: changed-files
@@ -69,7 +67,6 @@ jobs:
         with:
           files_separator: " "
           files: |
-            package.json
             CHANGELOG.md
       - name: Get changed Files
         run: |
