@@ -56,7 +56,8 @@ jobs:
         id: package-version
         run: echo "pkg_version=$(jq -r '.version' package.json)" >> $GITHUB_ENV
       - name: Check if release for package version already exists
-        run: curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "pkg_version_released=true" >> $GITHUB_ENV || echo "pkg_version_released=false" >> $GITHUB_ENV
+        id: release-exists
+        run: curl --fail --silent "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/$(jq .version -r package.json)" && echo "release_exists=true" >> $GITHUB_ENV || echo "release_exists=false" >> $GITHUB_ENV
       
       - name: Changed Files
         id: changed-files
@@ -74,6 +75,7 @@ jobs:
 
           echo "changed"
           echo ${{ steps.changed-files.outputs.all_changed_files }}
+          echo ${{ steps.release-exists.outputs.release_exists }}
         
 
   release:
