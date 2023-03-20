@@ -57,6 +57,17 @@ jobs:
       - name: Get package version
         id: package-version
         run: echo "pkg_version=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+      - uses: madhead/semver-utils@v3
+        id: semver-utils
+        with:
+          lenient: false
+          version: ${{ env.pkg_version }}
+      - run: |
+          echo "version is: ${{ env.pkg_version }}"
+          echo "release is: ${{ steps.semver-utils.outputs.release }}"
+          echo "prerelase is: ${{ steps.semver-utils.outputs.prerelease }}"
+          [[ "${{ steps.semver-utils.outputs.prerelease }}" == "" ]] &&  echo "latest" ||  echo "${{ env.pkg_version }}"
+
       - name: Check if release for package version already exists
         id: release-exists
         run: |
